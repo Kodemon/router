@@ -1,5 +1,7 @@
 import { History, Location, UnregisterCallback } from "history";
 
+import { RouterError } from "./Error";
+import { policyOptions } from "./Policy";
 import { Route } from "./Route";
 import { Query } from "./Query";
 import { ValueStore } from "./ValueStore";
@@ -12,7 +14,6 @@ export class Router {
   public params: ValueStore;
   public state: ValueStore;
   public route?: Route;
-  public location?: Location;
   public unregister?: UnregisterCallback;
 
   /**
@@ -28,15 +29,32 @@ export class Router {
   }
 
   /**
+   * Get the current location from the history instance.
+   *
+   * @returns history.location
+   */
+  public get location(): Location {
+    return this.history.location;
+  }
+
+  /**
    * Start listening to transition requests.
    *
    * @param handler - Route handler function.
    */
   public listen(handler: Handler) {
+    let locations: Location[] = [];
     if (this.unregister) {
       this.unregister();
     }
     this.unregister = this.history.listen(async (location: Location) => {
+      if (locations.length > 1) {
+        locations.shift();
+      }
+      locations.push(location);
+
+      // ### Resolve Location
+
       const result = this.get(location.pathname);
       if (result) {
         const route = result.route;
@@ -50,7 +68,24 @@ export class Router {
 
         for (const policy of route.policies) {
           try {
-            await policy({ route, query, params, state });
+            const res = await policy(policyOptions, { route, query, params, state });
+            switch (res.status) {
+              case "accept": {
+                break;
+              }
+              case "reject": {
+                return handler.error(new RouterError(res.data.message, res.data.data));
+              }
+              case "redirect": {
+                if (res.data.isExternal) {
+                  window.location.replace(res.data.path);
+                } else {
+                  return this.goTo(res.data.path, {
+                    origin: locations[0]
+                  });
+                }
+              }
+            }
           } catch (err) {
             return handler.error(err);
           }
@@ -60,7 +95,6 @@ export class Router {
         // Set the new location, query, params, and route to the router.
 
         this.route = route;
-        this.location = location; // store the current location
         this.state = state;
         this.query = query;
         this.params = params;

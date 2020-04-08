@@ -1,7 +1,7 @@
 {
   "name": "cmdo-router",
   "description": "Framework agnostic routing solution for single page web applications.",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "author": "Christoffer Rodvik <christoffer@kodemon.net>",
   "license": "MIT",
   "repository": "Kodemon/router",
@@ -13,7 +13,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublish": "tsc",
+    "prepublishOnly": "tsc",
     "build": "tsc",
     "test": "node --inspect node_modules/.bin/jest --runInBand"
   },

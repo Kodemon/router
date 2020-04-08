@@ -8,6 +8,7 @@ import { Router } from "./Router";
  |--------------------------------------------------------------------------------
 */
 
+export * from "./Policy";
 export * from "./Route";
 
 export const router = new Router(createBrowserHistory());

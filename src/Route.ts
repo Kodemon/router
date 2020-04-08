@@ -1,6 +1,5 @@
-import { Query } from "./Query";
+import { Policy } from "./Policy";
 import { pathToRegexp } from "./Utils";
-import { ValueStore } from "./ValueStore";
 
 export class Route {
   public readonly components: any[] = [];
@@ -75,13 +74,6 @@ function parseParams(path: string): RouteParameter[] {
  |--------------------------------------------------------------------------------
  */
 
-type PolicyState = {
-  route: Route;
-  query: Query;
-  params: ValueStore;
-  state: ValueStore;
-};
-
 type RouteOptions = {
   /**
    * Identifier, useful for determine active route in app components.
@@ -101,12 +93,12 @@ type RouteOptions = {
   /**
    * Executes before the route is rendered.
    */
-  before?(): Promise<any>;
+  before?(...args: any[]): Promise<any>;
 
   /**
    * Executes after the routed has been rendered.
    */
-  after?(): void;
+  after?(...args: any[]): void;
 };
 
 /**
@@ -116,10 +108,3 @@ export type RouteParameter = {
   name: string;
   value?: string;
 };
-
-/**
- * Route policy executed before a route is committed to the router.
- *
- * @param state - Router state to pass onto the policy function.
- */
-export type Policy = (state: PolicyState) => Promise<void>;
