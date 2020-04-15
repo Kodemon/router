@@ -38,8 +38,8 @@ export class ValueStore {
    * @returns entire query object if no key is provided, else value of the key
    */
   public get(): Store;
-  public get(key: string): string;
-  public get(key?: string): Store | string {
+  public get<T = any>(key: string): T;
+  public get<T = any>(key?: string): Store | T {
     if (typeof key === "string") {
       return this.store[key];
     } else {

@@ -1,31 +1,26 @@
 {
-  "name": "cmdo-router",
-  "description": "Framework agnostic routing solution for single page web applications.",
-  "version": "1.0.4",
+  "name": "router",
+  "description": "A react router hook layer for https://github.com/Kodemon/router",
+  "version": "1.0.7",
+  "private": true,
   "author": "Christoffer Rodvik <christoffer@kodemon.net>",
   "license": "MIT",
-  "repository": "Kodemon/router",
+  "repository": "cmdo/router",
   "keywords": [
     "router",
     "web",
-    "spa"
+    "spa",
+    "react"
   ],
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "scripts": {
-    "prepublishOnly": "tsc",
-    "build": "tsc",
-    "test": "node --inspect node_modules/.bin/jest --runInBand"
-  },
-  "dependencies": {
-    "@types/history": "4.7.5",
-    "history": "4.10.1"
-  },
-  "devDependencies": {
-    "@types/jest": "^25.2.1",
-    "jest": "^25.2.7",
-    "prettier": "^2.0.3",
-    "ts-jest": "^25.3.1",
-    "typescript": "3.8.3"
+    "setup": "npm run setup:router && npm run setup:react",
+    "setup:router": "cd ./packages/router && npm i",
+    "setup:react": "cd ./packages/react && npm i",
+    "build": "npm run build:router && npm run build:react",
+    "build:router": "cd ./packages/router && npm run build",
+    "build:react": "cd ./packages/react && npm run build",
+    "test": "npm run test:router && npm run test:react",
+    "test:router": "cd ./packages/router && npm test",
+    "test:react": "cd ./packages/react && npm test"
   }
 }
