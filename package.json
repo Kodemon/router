@@ -21,6 +21,9 @@
     "build:react": "cd ./packages/react && npm run build",
     "test": "npm run test:router && npm run test:react",
     "test:router": "cd ./packages/router && npm test",
-    "test:react": "cd ./packages/react && npm test"
+    "test:react": "cd ./packages/react && npm test",
+    "publish": "npm run publish:router && npm run publish:react",
+    "publish:router": "cd ./packages/router && npm publish",
+    "publish:react": "cd ./packages/react && npm publish"
   }
 }
