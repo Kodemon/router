@@ -4,7 +4,7 @@
   "version": "1.0.7",
   "author": "Christoffer Rodvik <christoffer@kodemon.net>",
   "license": "MIT",
-  "repository": "Kodemon/router-react",
+  "repository": "cmdo/router",
   "keywords": [
     "router",
     "web",
