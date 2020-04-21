@@ -1,7 +1,7 @@
 {
   "name": "cmdo-router-react",
   "description": "A react router hook layer for https://github.com/Kodemon/router",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "author": "Christoffer Rodvik <christoffer@kodemon.net>",
   "license": "MIT",
   "repository": "cmdo/router",
@@ -15,19 +15,18 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "prepublishOnly": "tsc",
-    "build": "tsc",
+    "build": "rm -rf ./dist && tsc",
     "test": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "dependencies": {
-    "react": "16.13.1",
-    "router": "npm:cmdo-router@1.0.6"
+    "react": "16.13.1"
   },
   "devDependencies": {
     "@types/jest": "25.2.1",
-    "@types/react": "16.9.32",
-    "jest": "25.2.7",
-    "prettier": "2.0.3",
-    "ts-jest": "25.3.1",
+    "@types/react": "16.9.34",
+    "jest": "25.4.0",
+    "prettier": "2.0.4",
+    "ts-jest": "25.4.0",
     "typescript": "3.8.3"
   }
 }
