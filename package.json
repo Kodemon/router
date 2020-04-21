@@ -13,17 +13,22 @@
     "react"
   ],
   "scripts": {
-    "setup": "npm run setup:router && npm run setup:react",
-    "setup:router": "cd ./packages/router && npm i",
-    "setup:react": "cd ./packages/react && npm i",
-    "build": "npm run build:router && npm run build:react",
-    "build:router": "cd ./packages/router && npm run build",
-    "build:react": "cd ./packages/react && npm run build",
-    "test": "npm run test:router && npm run test:react",
+    "setup": "yarn setup:router && yarn setup:native && yarn setup:react && yarn bootstrap",
+    "setup:router": "cd ./packages/router && yarn",
+    "setup:native": "cd ./packages/native && yarn",
+    "setup:react": "cd ./packages/react && yarn",
+    "build": "yarn build:router && yarn build:react",
+    "build:router": "cd ./packages/router && yarn build",
+    "build:react": "cd ./packages/react && yarn build",
+    "demo:native": "cd ./demo/native && yarn && expo start",
+    "demo:web": "cd ./demo/web && yarn && yarn start",
+    "test": "yarn test:router && yarn test:react",
     "test:router": "cd ./packages/router && npm test",
     "test:react": "cd ./packages/react && npm test",
-    "publish": "npm run publish:router && npm run publish:react",
+    "publish": "yarn publish:router && yarn publish:react",
     "publish:router": "cd ./packages/router && npm publish",
-    "publish:react": "cd ./packages/react && npm publish"
+    "publish:native": "cd ./packages/native && npm publish",
+    "publish:react": "cd ./packages/react && npm publish",
+    "bootstrap": "node bootstrap.js"
   }
 }
