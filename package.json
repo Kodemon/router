@@ -25,7 +25,7 @@
     "test": "yarn test:router && yarn test:react",
     "test:router": "cd ./packages/router && npm test",
     "test:react": "cd ./packages/react && npm test",
-    "publish": "yarn publish:router && yarn publish:react",
+    "publish": "yarn publish:router && yarn publish:native && yarn publish:react",
     "publish:router": "cd ./packages/router && npm publish",
     "publish:native": "cd ./packages/native && npm publish",
     "publish:react": "cd ./packages/react && npm publish",
