@@ -1,7 +1,7 @@
 {
   "name": "cmdo-router-native",
   "description": "Framework agnostic routing solution for native based applications.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Christoffer Rodvik <christoffer@kodemon.net>",
   "license": "MIT",
   "repository": "cmdo/router",
@@ -18,10 +18,10 @@
     "test": "node --inspect node_modules/.bin/jest --runInBand"
   },
   "dependencies": {
-    "@types/history": "4.7.5",
     "history": "4.10.1"
   },
   "devDependencies": {
+    "@types/history": "4.7.5",
     "@types/jest": "25.2.1",
     "jest": "25.2.7",
     "prettier": "2.0.3",
