@@ -13,12 +13,13 @@
     "react"
   ],
   "scripts": {
-    "setup": "yarn setup:router && yarn setup:native && yarn setup:react && yarn bootstrap",
+    "setup": "yarn setup:router && yarn setup:native && yarn setup:react && yarn build && yarn bootstrap",
     "setup:router": "cd ./packages/router && yarn",
     "setup:native": "cd ./packages/native && yarn",
     "setup:react": "cd ./packages/react && yarn",
-    "build": "yarn build:router && yarn build:react",
+    "build": "yarn build:router && yarn build:native && yarn build:react",
     "build:router": "cd ./packages/router && yarn build",
+    "build:native": "cd ./packages/native && yarn build",
     "build:react": "cd ./packages/react && yarn build",
     "demo:native": "cd ./demo/native && yarn && expo start",
     "demo:web": "cd ./demo/web && yarn && yarn start",
