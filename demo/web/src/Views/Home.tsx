@@ -1,17 +1,13 @@
 import React from "react";
 import { router, Route } from "router";
 
+import { Link } from "../Components/Link";
+
 const Home: React.FC = () => {
   return (
     <div>
       <div>You are now on the home screen!</div>
-      <button
-        onClick={() => {
-          router.goTo("/about");
-        }}
-      >
-        Go to About
-      </button>
+      <Link to="/about">Go to About</Link>
     </div>
   );
 };
