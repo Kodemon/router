@@ -1,7 +1,7 @@
 {
   "name": "cmdo-router",
   "description": "Framework agnostic routing solution for single page web applications.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "author": "Christoffer Rodvik <christoffer@kodemon.net>",
   "license": "MIT",
   "repository": "cmdo/router",
