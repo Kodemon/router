@@ -8,12 +8,12 @@ import { ValueStore } from "./ValueStore";
 /**
  * Framework agnostic router for single page applications.
  *
- * @author   Christoffer Rødvik <dev@kodemon.net>
- * @license  MIT
+ * @author  Christoffer Rødvik <dev@kodemon.net>
+ * @license MIT
  */
 export class Router {
-  public readonly base: string;
   public readonly history: History;
+  public readonly base: string;
 
   public routes: Route[] = [];
   public query: Query;
@@ -28,8 +28,8 @@ export class Router {
    * @param history  - History instance.
    * @param settings - Router settings.
    */
-  constructor(history: History, { base = "" }: Settings = {}) {
-    this.base = base;
+  constructor(history: History, { base }: Settings = {}) {
+    this.base = getBase(base);
     this.history = history;
     this.query = new Query(history);
     this.params = new ValueStore();
@@ -153,7 +153,7 @@ export class Router {
    * @param state - State to deliver with the route.
    */
   public goTo(path: string, state: any = {}) {
-    this.history.push(this.base + path, state);
+    this.history.push((this.base + path.replace(this.base, "")).replace(/\/$/, ""), state);
   }
 
   /**
@@ -196,6 +196,23 @@ function getParams(container: Result): ValueStore {
     index += 1;
   }
   return new ValueStore(result);
+}
+
+/**
+ * Get a router base path for subdirectory support.
+ *
+ * @remarks
+ * This mainly serves to ensure a valid base for invalid root values.
+ *
+ * @param path - Path to provide as base.
+ *
+ * @returns Base path
+ */
+function getBase(path?: string): string {
+  if (!path || path === "" || path === "/") {
+    return "";
+  }
+  return path;
 }
 
 /*
