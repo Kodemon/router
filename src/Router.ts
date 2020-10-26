@@ -111,10 +111,9 @@ export class Router {
               }
               case "redirect": {
                 if (res.isExternal) {
-                  window.location.replace(res.path);
-                } else {
-                  return this.goTo(res.path, { origin: locations[0] });
+                  return window.location.replace(res.path);
                 }
+                return this.goTo(res.path, { origin: locations[0] });
               }
             }
           } catch (err) {
